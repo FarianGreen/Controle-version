@@ -1,7 +1,7 @@
 
 const booksLoaded =(newBooks)=>{
     return {
-        type:'BOOK_LOADED',
+        type:'BOOKS_LOADED',
         payload: newBooks
     }
 }
