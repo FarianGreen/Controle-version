@@ -5,18 +5,21 @@ import { connect } from 'react-redux';
 import { withBookstoreService } from '../Hoc';
 import {booksLoaded} from '../../Actions'
 import {compose} from '../../utils'
+import Spinner from '../Spiner'
 
 class BookList extends React.Component{
 
-    componentDidMount(){
-    const { bookstoreService } = this.props;
-    const data = bookstoreService.getBooks();
-  
-    this.props.booksLoaded(data);    
-    }
+    componentDidMount() {
+        const { bookstoreService, booksLoaded } = this.props;
+        bookstoreService.getBooks()
+                            .then((data) => booksLoaded(data));
+      }
     
     render() {
-        const {books}= this.props;
+        const {books, loading }= this.props;
+        if (loading) {
+            return <Spinner />;
+          }
         return (
             <ul className="book-list">
                 {
@@ -31,8 +34,8 @@ class BookList extends React.Component{
     }
 }
 
-const mapStateToProps = ({ books }) => {
-    return { books };
+const mapStateToProps = ({ books,loading }) => {
+    return { books,loading };
   };
 
 const mapDispatchToProps = {
