@@ -10,7 +10,7 @@ const App = () => {
       <ShopHeader numItems={2} total={60}/>
       <Routes>
         <Route path="/"element = {<HomePage/>}/>
-        <Route path="/card"element = {<CardPage/>}/>
+        <Route path="/cart"element = {<CardPage/>}/>
       </Routes>
     </main>
   )
